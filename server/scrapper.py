@@ -4,7 +4,7 @@ import re
 import ssl
 
 # scrap webpages
-def getPages(urlDict):
+def get_pages(urlDict):
     pageDict = {}   # to store pages scrapped from
 
     context = ssl._create_unverified_context()  # to remove unable to verify SSL cert
@@ -20,22 +20,26 @@ def getPages(urlDict):
     return pageDict
 
 
-def parseData(pageDict):
+def parse_data(pageDict):
     # parse the html
     soup = BeautifulSoup(pageDict["goldHeart"], "html.parser")
-    ringsHTML = soup.find_all("li", attrs={"class": "item last"})
-    print(ringsHTML)
-        
+    # get the sections that has info of the rings
+    ringsSection = soup.find_all("li", attrs={"class": "item last"})
+    
+    for ringSection in ringsSection:
+        ringUrl = ringSection.find_all("a", attrs={"class": "product-image"}, href=True)
+        print(ringUrl['href'])  # BUG HERE
+
 
 def main():
     # URLs to scrap data from
     urlDict = {"goldHeart" : "https://shop.goldheart.com/bridal/engagement-rings.html"}
 
     # get scrapped pages
-    pageDict = getPages(urlDict)
+    pageDict = get_pages(urlDict)
 
     # parse the html
-    parseData(pageDict)
+    parse_data(pageDict)
 
 
 if __name__ == "__main__":
