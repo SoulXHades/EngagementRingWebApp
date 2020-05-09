@@ -3,6 +3,8 @@ import urllib.request
 import re
 import ssl
 
+from shops.goldHeart import parse_data_goldheart
+
 # scrap webpages
 def get_pages(urlDict):
     pageDict = {}   # to store pages scrapped from
@@ -21,14 +23,11 @@ def get_pages(urlDict):
 
 
 def parse_data(pageDict):
+    ringsList = dict()
+
     # parse the html
     soup = BeautifulSoup(pageDict["goldHeart"], "html.parser")
-    # get the sections that has info of the rings
-    ringsSection = soup.find_all("li", attrs={"class": "item last"})
-    
-    for ringSection in ringsSection:
-        ringUrl = ringSection.find_all("a", attrs={"class": "product-image"}, href=True)
-        print(ringUrl['href'])  # BUG HERE
+    parse_data_goldheart(soup, ringsList)
 
 
 def main():

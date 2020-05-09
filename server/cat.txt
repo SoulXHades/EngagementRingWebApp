@@ -1,0 +1,8 @@
+Diamond rings categories:
+1. Stall brand
+2. Diamond ring color
+3. Carat
+4. Diamond color
+5. Diamond shape
+6. Diamond cut
+7. Price
