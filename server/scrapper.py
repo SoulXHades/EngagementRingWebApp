@@ -1,4 +1,4 @@
-from firebase_admin import db
+import firebase_admin
 import urllib.request
 import re
 import ssl
@@ -6,8 +6,10 @@ import ssl
 from shops.goldHeart import parse_data_goldheart
 from shops.loveNco import parse_data_lovenco
 
+# to store data into firebase
 def db_storage(ringsData):
-    pass
+    cred = firebase_admin.credentials.Certificate("./firebase_key.json")
+    default_app = firebase_admin.initialize_app(cred)
 
 
 # scrap webpages
@@ -54,12 +56,13 @@ def main():
         "love_N_Co": "https://shop.love-and-co.com/category/diamond-rings/"}
 
     # get scrapped pages
-    pageDict = get_pages(urlDict)
+    # pageDict = get_pages(urlDict)
 
-    # parse the html
-    ringsData = parse_data(urlDict, pageDict)
+    # # parse the html
+    # ringsData = parse_data(urlDict, pageDict)
 
-    db_storage(ringsData)
+    # db_storage(ringsData)
+    db_storage("")
 
 
 if __name__ == "__main__":
