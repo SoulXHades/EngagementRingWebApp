@@ -1,13 +1,15 @@
 from bs4 import BeautifulSoup
 import re
+import ssl
+import urllib
 
-def parse_data_lovenco(url, page, pageNum, ringsData, get_pages):
+def parse_data_lovenco(url, page, pageNum, ringsData, ringCounter, get_pages):
     soup = BeautifulSoup(page, "html.parser")
     
-    return get_data(url, pageNum, soup, ringsData, get_pages)
+    return get_data(url, pageNum, soup, ringsData, ringCounter, get_pages)
 
 
-def get_data(url, pageNum, soup, ringsData, get_pages):
+def get_data(url, pageNum, soup, ringsData, ringCounter, get_pages):
     # check if already have "goldHeart" key in ringsData
     try:
         ringsData['love_N_Co']
@@ -29,8 +31,10 @@ def get_data(url, pageNum, soup, ringsData, get_pages):
         # get url to the specific ring's page
         tempDict['ringSiteURL'] = ring.a['href']
 
-        # get ring image's URL
-        tempDict['ringImage'] = ring.a.img['src']
+        # download image
+        ringImageName, ringCounter = get_image(ring.a.img['src'], ringCounter)
+        # get the ring image's name
+        tempDict['ringImage'] = ringImageName
 
         tempDict['ringName'] = ring.a.h2.text
 
@@ -79,9 +83,9 @@ def get_data(url, pageNum, soup, ringsData, get_pages):
         # get next page
         page = get_pages(newUrl)
         # recursion since different page but same HTML elements structures
-        ringsData = parse_data_lovenco(url, page, pageNum, ringsData, get_pages)
+        ringsData, ringCounter = parse_data_lovenco(url, page, pageNum, ringsData,  ringCounter, get_pages)
 
-    return ringsData
+    return ringsData, ringCounter
 
 
 # to format price by extracting them and form then into integer
@@ -90,3 +94,17 @@ def format_price(tempStr):
     numList = re.findall("\d+", tempStr)
 
     return int("".join(numList))
+
+# download image and return image name and new ring counter
+def get_image(imageURL, ringCounter):
+    # create a unique name for the ring's image and also consider it might be .PNG, .jpeg, .jpg, etc
+    ringImageName = str(ringCounter) + (imageURL[-4:] if "." == imageURL[-4]
+        else imageURL[-5:])
+    # increment ring counter
+    ringCounter += 1
+    # to remove unable to verify SSL cert
+    ssl._create_default_https_context = ssl._create_unverified_context
+    # download images and store them in the "shops/images" folder
+    urllib.request.urlretrieve(imageURL, "shops/images/" + ringImageName)
+
+    return ringImageName, ringCounter
