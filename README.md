@@ -7,12 +7,4 @@ Webpage Backend:
 * npm install -g firebase-tools
     1. firebase login   (To login into your Firebase account)
     2. firebase init   (Install packages for Firebase)
-
-Webpage Frontend:
-* npm install -g create-react-app
-    1. create-react-app client   (Install packages into client folder for React)
-* npm install --save react-router-dom
-* npm install --save @material-ui/core   (Like bootstrap for UI)
-* npm install @material-ui/icons   (Like bootstrap for UI)
-* npm install @material-ui/lab   (Like bootstrap for UI)
-* npm install axios
+* npm install   (will based on the dependencies in package.json and download them)

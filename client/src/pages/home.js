@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 // @material-ui
-import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -22,10 +21,10 @@ class Home extends Component
     {
         axios.get('/getAllDiamonds')
             .then(res => {
-                console.log(res.data)
+                console.log(res.data);
                 this.setState({
                     diamondData: res.data,
-                })
+                });
             })
             .catch(err => console.log(err));
     }
@@ -36,11 +35,11 @@ class Home extends Component
             <div className="center">
                 <Autocomplete
                     id="searchRings"
-                    // options={this.state.diamondData.map((option) => option.ringName)}
+                    options={this.getRingList().map((option) => option.ringName)}
                     renderInput={(params) => (
                     <TextField
                         {...params}
-                        placeholder="Search..."
+                        placeholder="Search ring names..."
                         margin="dense"
                         variant="outlined"
                         InputProps={{ ...params.InputProps, type: 'search' }}
@@ -49,6 +48,26 @@ class Home extends Component
                 />
             </div>
         )
+    }
+
+    // to get a list of rings by parsing the JSON gotten from the website's API
+    getRingList()
+    {
+        var ringList = [];
+
+        for (var key in this.state.diamondData)
+        {
+            var val = this.state.diamondData[key];
+
+            for (var shop in val)
+            {
+                // get a list of ringsInfo and push them into ringList
+                var tempRingList = this.state.diamondData[key][shop];
+                ringList.push(...tempRingList);
+            }
+        }
+        
+        return ringList;
     }
 }
 
