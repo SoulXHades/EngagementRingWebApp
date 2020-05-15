@@ -1,21 +1,18 @@
-const functions = require('firebase-functions');
-const admin = require("firebase-admin");
+const cors = require("cors");
+const express = require("express");
+const functions = require("firebase-functions");
 
-admin.initializeApp();
-var db = admin.database();
+const app = express();
+// allow cross-origin requests (cors)
+app.use(cors({ origin: true }));
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
+// function objects from file at path "handlers/diamonds.js"
+const { getAllDiamonds } = require('./handlers/diamonds');
 
-// to get the whole "shops" JSON tree from Firebase and return as API to the client
+
+// handle GET POST requests
+app.get('/getAllDiamonds', getAllDiamonds);     // calls getDiamondData()
+
 // ref: https://firebase.google.com/docs/database/admin/retrieve-data#node.js
-exports.getData = functions.region("asia-east2").https.onRequest((req, res) => 
-{
-    // get whole "shops" JSON tree from Firebase
-    db.ref("shops").on("value", (data) =>
-    {
-        // send the JSON tree back to the client
-        res.json(data.val());
-    });
-});
+// handle api requests
+exports.api = functions.region("asia-east2").https.onRequest(app);
