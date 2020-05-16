@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 class Navibar extends Component {
     render() {
         return (
-            <AppBar color="transparent">    
+            <AppBar>    
                 <Toolbar className="navi-container">
                     <Button color="inherit" component={Link} to="/"><b>Home</b></Button>
                     <Button color="inherit" component={Link} to="/about"><b>About</b></Button>

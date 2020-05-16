@@ -5,7 +5,7 @@ import './App.css'
 // components
 import Navibar from './components/Navibar'
 // pages
-import home from './pages/home';
+import home from './pages/home/home';
 import about from './pages/about';
 
 // @material-ui
@@ -14,25 +14,25 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 
 // ref: https://material-ui.com/customization/color/#color
 const theme = createMuiTheme(
-{
-  palette: 
   {
-    primary: 
+    palette: 
     {
-      light: '#33c9dc',
-      main: '#00bcd4',
-      dark: '#008394',
-      contrastText: '#fff',
+      primary: 
+      {
+        light: '#29b6f6',
+        main: '#03a9f4',
+        dark: '#039be5',
+        contrastText: '#fff',
+      },
+      secondary: 
+      {
+        light: '#f73378',
+        main: '#f50057',
+        dark: '#ab003c',
+        contrastText: '#fff',
+      },
     },
-    secondary: 
-    {
-      light: '#f73378',
-      main: '#f50057',
-      dark: '#ab003c',
-      contrastText: '#fff',
-    },
-  },
-});
+  });
 
 class App extends Component {
   render() {
