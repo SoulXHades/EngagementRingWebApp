@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+// self made components
+import SearchBar from './components/SearchBar';
+import RingPost from './components/RingPost';
+
 // @material-ui
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 
 
 class Home extends Component 
@@ -20,7 +17,12 @@ class Home extends Component
 
         this.state = {
             diamondData: null,
+            searchWord: "",
         };
+
+        // ref: https://codeburst.io/binding-functions-in-react-b168d2d006cb
+        // ref to explaining why need binding to own class for event callbacks
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount()
@@ -35,64 +37,28 @@ class Home extends Component
             .catch(err => console.log(err));
     }
 
+    handleChange(event)
+    {
+        // set the new value input by the user as the state
+        this.setState({
+            searchWord: event.target.value,
+        });
+    }
+
     render() 
     {
         return (
             <div className="center">
-                <div className="containerSearch">
-                    <Autocomplete // for Search bar for ring names
-                        id="searchRings"
-                        // creating an Array of ring names from the JSON object using map(),
-                        // convert to Set to to remove duplicated ring names, and convert back to Array.
+                <div className="center">
+                    <SearchBar 
                         options={Array.from(new Set(this.getRingList().map((option) => option.ringName)))}
-                        renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            placeholder="Search ring names..."
-                            margin="dense"
-                            variant="outlined"
-                            InputProps={{ ...params.InputProps, type: 'search' }}
-                        />
-                        )}
+                        value={this.state.searchWord}
+                        handleChangeValue={this.handleChange}
                     />
                 </div>
                 <div className="containerRings">
                     <Grid container spacing={1}>
-                        <Grid item xs={15} sm={5}>
-                            <Card style={{maxWidth: 350}}>
-                                <CardActionArea>
-                                    <CardMedia
-                                        component="img"
-                                        alt="template"
-                                        className="cardMedia"
-                                        image="https://firebasestorage.googleapis.com/v0/b/hawkercentral.appspot.com/o/images%2F1589555037633_fruits-cup.jpg?alt=media&token=84974e73-eb88-4e47-971d-b15e463b1751"
-                                        title="Template"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Template
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Template Template
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                        </Grid>
-                        <Grid item xs={15} sm={5}>
-                            <Card style={{maxWidth: 350}}>
-                                <CardActionArea>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Template
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Template Template
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                        </Grid>
+                        <CreateRingPosts ringsInfo={this.getRingList()}/>
                     </Grid>
                 </div>
             </div>
@@ -118,6 +84,17 @@ class Home extends Component
         
         return ringList;
     }
+}
+
+const CreateRingPosts = (props) => {
+    return (
+        props.ringsInfo.map((ring) => {
+            return (
+                <Grid item>
+                    <RingPost ringInfo={ring}/>
+                </Grid>
+            );
+    }));
 }
 
 export default Home
