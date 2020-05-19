@@ -45,6 +45,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={home}/>
                 <Route exact path="/about" component={about}/>
+                <Route exact path="/rings/page/:pageNum" component={home}/>
               </Switch>
             </div>
           </Router>
