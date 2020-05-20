@@ -24,8 +24,17 @@ body
 
 .container
 {
+  margin: 10% 0 0 2%;
+}
+
+.containerFilters
+{
   margin: 10% auto 0 auto;
-  max-width: 100%;
+}
+
+.containerPagination
+{
+  margin: 5% 10% 0 25%;
 }
 
 .containerRings

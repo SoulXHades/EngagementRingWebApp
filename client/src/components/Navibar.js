@@ -13,7 +13,13 @@ class Navibar extends Component {
         return (
             <AppBar>    
                 <Toolbar className="navi-container">
-                    <Button color="inherit" component={Link} to="/"><b>Home</b></Button>
+                    <Button 
+                        color="inherit" 
+                        onClick={() => {
+                            // loads a completely fresh page (removes filters, etc)
+                            window.location.href = "/"}}>
+                        <b>Home</b>
+                    </Button>
                     <Button color="inherit" component={Link} to="/about"><b>About</b></Button>
                 </Toolbar>
             </AppBar>
