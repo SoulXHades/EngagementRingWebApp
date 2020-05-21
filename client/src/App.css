@@ -24,7 +24,7 @@ body
 
 .container
 {
-  margin: 10% 0 0 2%;
+  margin: 5% 100px 0 100px;
 }
 
 .containerFilters
@@ -34,16 +34,16 @@ body
 
 .containerPagination
 {
-  margin: 5% 10% 0 25%;
+  margin: 5% 10% 10% 25%;
 }
 
 .containerRings
 {
   background-image: none;
   background-color: transparent;
-  margin-left: 10%;
+  margin-left: 20%;
   display: block;
-  width: 90%;
+  width: 800px;
 }
 
 .containerSearch

@@ -143,27 +143,29 @@ class Home extends Component
     {
         return (
             <Grid container>
-                <Filters/>
-            <div className="center">
-                <div className="center">
-                    <SearchBar 
-                        options={this.state.allRingNames}
-                        value={this.state.searchWord}
-                        handleChangeValue_auto={this.searchValChanged_auto}
-                        handleChangeValue_textfield={this.searchValChanged_textfield}
+                <Grid item xs={3}>
+                    <Filters/>
+                </Grid>
+                <Grid item xs>
+                    <div className="center">
+                        <SearchBar 
+                            options={this.state.allRingNames}
+                            value={this.state.searchWord}
+                            handleChangeValue_auto={this.searchValChanged_auto}
+                            handleChangeValue_textfield={this.searchValChanged_textfield}
+                        />
+                    </div>
+                    <div className="containerRings">
+                        <Grid container spacing={1}>
+                            <CreateRingPosts ringsInfo={this.state.displayRings}/>
+                        </Grid>
+                    </div>
+                    <PageNavigator
+                        numOfPages={this.state.numOfPages}
+                        currentPage={this.state.currentPage}
+                        pageChangeHandler={this.pageChange}
                     />
-                </div>
-                <div className="containerRings">
-                    <Grid container spacing={1}>
-                        <CreateRingPosts ringsInfo={this.state.displayRings}/>
-                    </Grid>
-                </div>
-                <PageNavigator
-                    numOfPages={this.state.numOfPages}
-                    currentPage={this.state.currentPage}
-                    pageChangeHandler={this.pageChange}
-                />
-            </div>
+                </Grid>
             </Grid>
         );
     }
@@ -209,7 +211,7 @@ const CreateRingPosts = (props) => {
     return (
         props.ringsInfo.map((ring) => {
             return (
-                <Grid item>
+                <Grid item xs={4}>
                     <RingPost ringInfo={ring}/>
                 </Grid>
             );

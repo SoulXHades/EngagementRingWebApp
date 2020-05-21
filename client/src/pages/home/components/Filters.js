@@ -14,84 +14,84 @@ export class Filters extends Component {
                 <b>Shop</b>
                 <Autocomplete
                     multiple
-                    style={{width: 100}}
+                    style={{width: 400}}
                     options={top100Films}
                     filterSelectedOptions
                     renderInput={(params) => (
                         <TextField
                             {...params}
                             variant="outlined"
-                            placeholder="Shops filter"
+                            placeholder="Filter by shops..."
                         />
                     )}
                 />
-                Carat
+                <br /><b>Carat</b>
                 <Autocomplete
                     multiple
-                    style={{width: 100}}
+                    style={{width: 400}}
                     options={top100Films}
                     filterSelectedOptions
                     renderInput={(params) => (
                         <TextField
                             {...params}
                             variant="outlined"
-                            placeholder="Favorites"
+                            placeholder="Filter by carats..."
                         />
                     )}
                 />
-                Diamond color
+                <br /><b>Diamond color</b>
                 <Autocomplete
                     multiple
-                    style={{width: 100}}
+                    style={{width: 400}}
                     options={top100Films}
                     filterSelectedOptions
                     renderInput={(params) => (
                         <TextField
                             {...params}
                             variant="outlined"
-                            placeholder="Favorites"
+                            placeholder="Filter by diamond colors..."
                         />
                     )}
                 />
-                Diamond shape
+                <br /><b>Diamond shape</b>
                 <Autocomplete
                     multiple
-                    style={{width: 100}}
+                    style={{width: 400}}
                     options={top100Films}
                     filterSelectedOptions
                     renderInput={(params) => (
                         <TextField
                             {...params}
                             variant="outlined"
-                            placeholder="Favorites"
+                            placeholder="Filter by diamond shapes..."
                         />
                     )}
                 />
-                Diamond cut
+                <br /><b>Diamond cut</b>
                 <Autocomplete
                     multiple
-                    style={{width: 100}}
+                    style={{width: 400}}
                     options={top100Films}
                     filterSelectedOptions
                     renderInput={(params) => (
                         <TextField
                             {...params}
                             variant="outlined"
-                            placeholder="Favorites"
+                            placeholder="Filter by diamond cuts..."
                         />
                     )}
                 />
-                Price
+                <br /><b>Price</b>
                 <Autocomplete
                     multiple
-                    style={{width: 100}}
+                    style={{width: 400}}
                     options={top100Films}
                     filterSelectedOptions
                     renderInput={(params) => (
                         <TextField
                             {...params}
                             variant="outlined"
-                            placeholder="Favorites"
+                            placeholder="Filter by price..."
                         />
                     )}
                 />
