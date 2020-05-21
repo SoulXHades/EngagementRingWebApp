@@ -6,7 +6,7 @@ import './App.css'
 import Navibar from './components/Navibar'
 // pages
 import home from './pages/home/home';
-import about from './pages/about';
+import about from './pages/about/about';
 
 // @material-ui
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'

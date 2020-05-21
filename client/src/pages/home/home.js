@@ -18,6 +18,9 @@ class Home extends Component
         super(props);
 
         this.state = {
+            allDiamondClarity: [],
+            allDiamondColors: [],
+            allRingCarats: [],
             allRingNames: [],
             currentPage: 1,
             diamondData: null,
@@ -25,6 +28,7 @@ class Home extends Component
             numOfPages: 1,
             ringList: [],
             searchWord: "",
+            shopList: [],
         };
 
         // ref: https://codeburst.io/binding-functions-in-react-b168d2d006cb
@@ -47,6 +51,7 @@ class Home extends Component
         }
     }
 
+    // executes when page loads for the 1st time
     componentDidMount()
     {
         axios.get('/getAllDiamonds')
@@ -64,10 +69,14 @@ class Home extends Component
                     var tempRingList = this.getRingList("");
 
                     this.setState({ 
-                        allRingNames: Array.from(new Set(tempRingList.map((option) => option.ringName))),
+                        allDiamondClarity: this.remover(tempRingList.map((option) => option.ringDiaClarity)),
+                        allDiamondColors: this.remover(tempRingList.map((option) => option.ringDiaColor)),
+                        allRingCarats: this.remover(tempRingList.map((option) => option.ringCarat)),
+                        allRingNames: this.remover(tempRingList.map((option) => option.ringName)),
                         displayRings: tempRingList.slice((this.state.currentPage - 1) * 9, this.state.currentPage * 9),
                         numOfPages: Math.ceil(tempRingList.length/9),
                         ringList: tempRingList,
+                        shopList: this.getShopList(),
                     });
                 });
             })
@@ -89,6 +98,9 @@ class Home extends Component
             return true;
 
         if (this.state.ringList !== nextState.ringList)
+            return true;
+        
+        if (this.state.shopList !== nextState.shopList)
             return true;
         
         return false;
@@ -144,7 +156,14 @@ class Home extends Component
         return (
             <Grid container>
                 <Grid item xs={3}>
-                    <Filters/>
+                    <Filters
+                        diamondClarity={this.state.allDiamondClarity}
+                        diamondColors={this.state.allDiamondColors}
+                        diamondShapes={this.state.allDiamondShapes}
+                        ringCarats={this.state.allRingCarats}
+                        ringPrices={this.state.allRingPrices}
+                        shopList={this.state.shopList}
+                    />
                 </Grid>
                 <Grid item xs>
                     <div className="center">
@@ -204,6 +223,36 @@ class Home extends Component
         }
         
         return ringList;
+    }
+
+    // get a list of shop names
+    getShopList()
+    {
+        var shopList = [];
+
+        for (var key in this.state.diamondData)
+        {
+            var val = this.state.diamondData[key];
+
+            for (var shop in val)
+                shopList.push(shop);
+        }
+        console.log(shopList);
+
+        return shopList;
+    }
+
+    // removes duplicates and "N/A" string from an array as well as sort them
+    remover(list)
+    {
+        // remove duplicates by converting to Set then back to Array
+        var tempList = Array.from(new Set(list));
+
+        // remove "N/A" from the array and sort them in accending order
+        return tempList.filter((str) => { 
+            return  str !== "N/A";
+        })
+        .sort();
     }
 }
 

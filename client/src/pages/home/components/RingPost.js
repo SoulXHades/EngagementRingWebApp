@@ -50,7 +50,7 @@ class RingPost extends Component {
                             component="img"
                             alt="Ring Image"
                             className="cardMedia"
-                            image="https://instagram.fsin9-1.fna.fbcdn.net/v/t51.2885-15/e35/46606189_1793168700788000_6993610551329366582_n.jpg?_nc_ht=instagram.fsin9-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=UtYiQD92b3oAX-lJKHX&oh=165c4d1b83f272b617f611850ff70e82&oe=5EEBCF19"
+                            image={this.props.ringInfo.ringImage}
                             title="Ring Image"
                         />
                         <CardContent>

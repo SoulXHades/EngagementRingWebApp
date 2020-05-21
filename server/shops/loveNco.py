@@ -12,10 +12,10 @@ def parse_data_lovenco(url, page, pageNum, ringsData, ringCounter, get_pages):
 def get_data(url, pageNum, soup, ringsData, ringCounter, get_pages):
     # check if already have "goldHeart" key in ringsData
     try:
-        ringsData['love_N_Co']
+        ringsData['Love & Co']
     except:
         # append a new dictionary to goldHeart key till like JSON format since don't have "goldHeart" key
-        ringsData['love_N_Co'] = list()
+        ringsData['Love & Co'] = list()
 
     # get the sections that has info of the rings
     ringsSection = soup.find("ul", attrs={"class": "products columns-4"})
@@ -27,6 +27,13 @@ def get_data(url, pageNum, soup, ringsData, ringCounter, get_pages):
     for ring in listOfRings:
         # to create a temp dictionary so later can append to the list in ringsData
         tempDict = dict()
+
+        # fill up everything variable/values with "N/A" incase website don't have
+        tempDict['ringCarat'] = "N/A"
+        tempDict['ringDiaClarity'] = "N/A"
+        tempDict['ringDiaColor'] = "N/A"
+        tempDict['ringImage'] = "N/A"
+        tempDict['ringPrice'] = 0
 
         # get url to the specific ring's page
         tempDict['ringSiteURL'] = ring.a['href']
@@ -63,11 +70,9 @@ def get_data(url, pageNum, soup, ringsData, ringCounter, get_pages):
         if ringPriceSection:
             # get the data in integer by removing "."
             tempDict['ringPrice'] = format_price(ringPriceSection.span.text)
-        else:
-            tempDict['ringPrice'] = 0
 
         # append to the list in our main storage ringsData
-        ringsData['love_N_Co'].append(tempDict)
+        ringsData['Love & Co'].append(tempDict)
         tempDict = None
 
     # go to the page navigation section
@@ -106,5 +111,8 @@ def get_image(imageURL, ringCounter):
     ssl._create_default_https_context = ssl._create_unverified_context
     # download images and store them in the "shops/images" folder
     urllib.request.urlretrieve(imageURL, "shops/images/" + ringImageName)
+
+    # change ring name to this URL to allow us to easily access the file on fire storage from our website
+    ringImageName = "https://storage.googleapis.com/engagementringwebapp.appspot.com/" + ringImageName
 
     return ringImageName, ringCounter

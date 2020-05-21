@@ -50,6 +50,10 @@ def db_storage(ringsData, imgDirPath):
         blob = bucket.blob(file)
         # set the source path
         blob.upload_from_filename(imgDirPath + "/" + file)
+        # to make it available to annoymous users so our website can access without authentication
+        blob.make_public()
+        # e.g. https://storage.googleapis.com/engagementringwebapp.appspot.com/86.jpg
+        # print(blob.public_url)
 
     print("Finished uploadeding to database...")
 
@@ -86,18 +90,18 @@ def parse_data(urlDict, pageDict):
     ringCounter = 0
 
     # parse the html
-    ringsData, ringCounter = parse_data_goldheart(urlDict["goldHeart"], 
-        pageDict["goldHeart"], 1, ringsData, ringCounter, get_pages)
-    ringsData, ringCounter = parse_data_lovenco(urlDict["love_N_Co"], 
-        pageDict["love_N_Co"], 1, ringsData, ringCounter, get_pages)
+    ringsData, ringCounter = parse_data_goldheart(urlDict["Goldheart"], 
+        pageDict["Goldheart"], 1, ringsData, ringCounter, get_pages)
+    ringsData, ringCounter = parse_data_lovenco(urlDict["Love & Co"], 
+        pageDict["Love & Co"], 1, ringsData, ringCounter, get_pages)
 
     return ringsData
 
 
 def main():
     # URLs to scrap data from
-    urlDict = {"goldHeart" : "https://shop.goldheart.com/bridal/engagement-rings.html",
-        "love_N_Co": "https://shop.love-and-co.com/category/diamond-rings/"}
+    urlDict = {"Goldheart" : "https://shop.goldheart.com/bridal/engagement-rings.html",
+        "Love & Co": "https://shop.love-and-co.com/category/diamond-rings/"}
     # path to folder that stores image of rings from web scrapping
     imgDirPath = str(os.getcwd()) + "/shops/images"
 

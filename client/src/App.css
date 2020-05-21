@@ -41,17 +41,17 @@ body
 {
   background-image: none;
   background-color: transparent;
-  margin-left: 20%;
+  margin-left: 10%;
   display: block;
-  width: 800px;
+  width: auto;
 }
 
 .containerSearch
 { 
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-left: 10%;
+  padding-right: auto;
+  padding-top: 5%;
+  padding-bottom: 2%;
 }
 
 .navi-container
