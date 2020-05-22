@@ -19,9 +19,11 @@ export class Filters extends Component {
             <div class="containerFilters">
                 <b>Shop</b>
                 <Autocomplete
+                    id="Shop"
                     multiple
                     style={{width: "auto"}}
                     options={this.props.shopList}
+                    onChange={this.props.handleFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
@@ -34,9 +36,11 @@ export class Filters extends Component {
                 />
                 <br /><b>Carat</b>
                 <Autocomplete
+                    id="Carat"
                     multiple
                     style={{width: "auto"}}
                     options={this.props.ringCarats}
+                    onChange={this.props.handleFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
@@ -49,9 +53,11 @@ export class Filters extends Component {
                 />
                 <br /><b>Diamond clarity</b>
                 <Autocomplete
+                    id="Clarity"
                     multiple
                     style={{width: "auto"}}
                     options={this.props.diamondClarity}
+                    onChange={this.props.handleFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
@@ -64,9 +70,11 @@ export class Filters extends Component {
                 />
                 <br /><b>Diamond color</b>
                 <Autocomplete
+                    id="Color"
                     multiple
                     style={{width: "auto"}}
                     options={this.props.diamondColors}
+                    onChange={this.props.handleFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
@@ -79,9 +87,11 @@ export class Filters extends Component {
                 />
                 <br /><b>Price</b>
                 <Autocomplete
+                    id="Price"
                     multiple
                     style={{width: "auto"}}
                     options={this.priceList}
+                    onChange={this.props.handleFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (

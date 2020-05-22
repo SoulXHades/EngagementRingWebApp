@@ -33,6 +33,7 @@ class Home extends Component
 
         // ref: https://codeburst.io/binding-functions-in-react-b168d2d006cb
         // ref to explaining why need binding to own class for event callbacks
+        this.filterValChanged = this.filterValChanged.bind(this);
         this.pageChange = this.pageChange.bind(this);
         this.searchValChanged_auto = this.searchValChanged_auto.bind(this);
         this.searchValChanged_textfield = this.searchValChanged_textfield.bind(this);
@@ -106,6 +107,13 @@ class Home extends Component
         return false;
     }
 
+    filterValChanged(event, value, reason)
+    {
+        console.log(value);
+        console.log(reason);
+        console.log(event.target.id);
+    }
+
     // event handler to handle what rings to display and set current page number
     pageChange(event, page)
     {
@@ -163,6 +171,7 @@ class Home extends Component
                         ringCarats={this.state.allRingCarats}
                         ringPrices={this.state.allRingPrices}
                         shopList={this.state.shopList}
+                        handleFilterValue={this.filterValChanged}
                     />
                 </Grid>
                 <Grid item xs>
