@@ -123,6 +123,8 @@ class Home extends Component
     {
         const tempRingList = this.getRingList(undefined, value);
         
+        // cannot use this.state to update filter's variables cause setState is async 
+        // so need use (state) => {} will use previous state of the variable
         this.setState(state => ({
             currentPage: 1,
             displayRings: tempRingList.slice(0, 9),
@@ -139,6 +141,8 @@ class Home extends Component
     {
         const tempRingList = this.getRingList(undefined, undefined, value);
         
+        // cannot use this.state to update filter's variables cause setState is async 
+        // so need use (state) => {} will use previous state of the variable
         this.setState((state, props) => ({
             currentPage: 1,
             displayRings: tempRingList.slice(0, 9),
@@ -155,6 +159,8 @@ class Home extends Component
     {
         const tempRingList = this.getRingList(undefined, undefined, undefined, value);
         
+        // cannot use this.state to update filter's variables cause setState is async 
+        // so need use (state) => {} will use previous state of the variable
         this.setState((state, props) => ({
             currentPage: 1,
             displayRings: tempRingList.slice(0, 9),
@@ -171,6 +177,8 @@ class Home extends Component
     {
         const tempRingList = this.getRingList(undefined, undefined, undefined, undefined, value);
         
+        // cannot use this.state to update filter's variables cause setState is async 
+        // so need use (state) => {} will use previous state of the variable
         this.setState((state, props) => ({
             currentPage: 1,
             displayRings: tempRingList.slice(0, 9),
@@ -187,6 +195,8 @@ class Home extends Component
     {
         const tempRingList = this.getRingList(undefined, undefined, undefined, undefined, undefined, value);
         
+        // cannot use this.state to update filter's variables cause setState is async 
+        // so need use (state) => {} will use previous state of the variable
         this.setState((state, props) => ({
             currentPage: 1,
             displayRings: tempRingList.slice(0, 9),
