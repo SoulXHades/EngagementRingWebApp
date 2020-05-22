@@ -23,7 +23,7 @@ export class Filters extends Component {
                     multiple
                     style={{width: "auto"}}
                     options={this.props.shopList}
-                    onChange={this.props.handleFilterValue}
+                    onChange={this.props.handleShopFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
@@ -40,7 +40,7 @@ export class Filters extends Component {
                     multiple
                     style={{width: "auto"}}
                     options={this.props.ringCarats}
-                    onChange={this.props.handleFilterValue}
+                    onChange={this.props.handleCaratFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
@@ -57,7 +57,7 @@ export class Filters extends Component {
                     multiple
                     style={{width: "auto"}}
                     options={this.props.diamondClarity}
-                    onChange={this.props.handleFilterValue}
+                    onChange={this.props.handleClarityFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
@@ -74,7 +74,7 @@ export class Filters extends Component {
                     multiple
                     style={{width: "auto"}}
                     options={this.props.diamondColors}
-                    onChange={this.props.handleFilterValue}
+                    onChange={this.props.handleColorFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
@@ -91,7 +91,7 @@ export class Filters extends Component {
                     multiple
                     style={{width: "auto"}}
                     options={this.priceList}
-                    onChange={this.props.handleFilterValue}
+                    onChange={this.props.handlePriceFilterValue}
                     filterSelectedOptions
                     size="small"
                     renderInput={(params) => (
