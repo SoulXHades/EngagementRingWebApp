@@ -192,7 +192,7 @@ class Home extends Component
             displayRings: tempRingList.slice(0, 9),
             filter: { 
                 ...state.filter,
-                diamondColor: value,
+                price: value,
             },
             numOfPages: Math.ceil(tempRingList.length/9),
             ringList: tempRingList,
@@ -421,9 +421,7 @@ class Home extends Component
                 return true;
             });
 
-            // return filteredRingList if filteredRingList is not empty else return ringList
-            if (filteredRingList.length !== 0)
-                return filteredRingList;
+            return filteredRingList;
         }
         
         return ringList;
