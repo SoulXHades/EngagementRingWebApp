@@ -1,3 +1,4 @@
 
 *.pyc
 server/firebase_key.json
+client/.firebase/hosting.YnVpbGQ.cache

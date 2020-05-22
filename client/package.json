@@ -35,6 +35,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://asia-east2-engagementringwebapp.cloudfunctions.net/api"
+  }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import axios from 'axios';
 import './App.css'
 
 // components
@@ -11,6 +12,8 @@ import about from './pages/about/about';
 // @material-ui
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
+
+axios.defaults.baseURL = "https://asia-east2-engagementringwebapp.cloudfunctions.net/api";
 
 // ref: https://material-ui.com/customization/color/#color
 const theme = createMuiTheme(
